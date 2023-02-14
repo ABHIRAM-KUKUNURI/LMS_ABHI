@@ -5,6 +5,7 @@ const userDetail = require('../controllers/allUsersControllers')
 const upload = require('../middleware/upload')
 
 
+
 routes.post('/',userDetail.addUser)
 routes.get('/',userDetail.instructorInfo)
 routes.post('/login',userDetail.authUser)
