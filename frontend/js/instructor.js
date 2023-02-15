@@ -17,7 +17,10 @@ function addInstructor(){
         formData.append("email", email);
         formData.append("Message", Message);
         formData.append("Linked", Linked);
-        
+        console.log(formData.Message)
+        for (var pair of formData.entries()) {
+            console.log(pair[0]+ '-,-' + pair[1]); 
+        }
         $.ajax({
                 method:"POST",
                 contentType:false,

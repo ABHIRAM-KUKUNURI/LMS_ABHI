@@ -25,6 +25,9 @@ function get_req(){ return new Promise((res, rej) => {
             <div class="time">
             <span id="${data[i].email}">${data[i].email}</span>
             </div>
+            <div class="categories">
+            <img src="../" alt="">
+            <a href="../${data[i].File}">Resume</a>
             </div>
             </div>
             </td>

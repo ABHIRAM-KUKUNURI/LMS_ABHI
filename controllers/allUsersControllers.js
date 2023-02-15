@@ -65,9 +65,10 @@ function studentToUserStep1(req, res){
             // let message = req.body.Message
             // let Files = req.body.File
             // let Linked = req.body.Linked
-            console.log(typeof(req.body.Message))
+            // console.log(typeof(req.body.Message))
+            console.log(req.body)
             
-            UserCTRl.User.updateOne({email:req.body.email},{$set:{isInstructor:"pending",Message:req.body.Message,File:'Uploads'+req.file.path,Linked:req.body.Linked}},(err,docs) =>{
+            UserCTRl.User.updateOne({email:req.body.email},{$set:{isInstructor:"pending",Message:req.body.Message,File:req.file.path,Linked:req.body.Linked}},(err,docs) =>{
                 if(err){
                     console.log(err)
                 }else{
