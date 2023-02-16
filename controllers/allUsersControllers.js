@@ -36,11 +36,17 @@ function authUser(req, res){
         else{
             console.log("200")
             console.log(docs)
-            if(docs === null){res.send("not found")}
+            if(docs === null){
+                res.send(err)
+            }else{
             if(docs.password === req.body.password){
-                if(err){console.log(err)}
-                else{res.send(docs)}
-            }
+                if(err){
+                    console.log(err)
+                }
+                else{
+                    res.send(docs)
+                }
+            }}
         }
 })
 }

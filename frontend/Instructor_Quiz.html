@@ -86,11 +86,13 @@
               <div class="row">
                 <div class="col-lg-12">
                   <div class="form-group d-flex">
-                    <div class="col-2">
+                    <!-- <div class="col-2">
                       <select id="select-course" style="display: inline-block;">
-                        <option selected>Select Course</option>
+                        <p>Enter the number of module you want to add</p>
+                        <input id="numberOfModules" type="number">
+                        <button id="submit_number"lass="btn btn-primary">Submit</button>
                       </select>
-                    </div>
+                    </div> -->
                     <br>
                     <!-- <div class="col-3" style="margin-left: 110%;">
                       <label for="courseModules">Course Module:</label>
@@ -110,30 +112,30 @@
             
             <div class="row">
               <div class="col-md-12" >
-                <form id="quiz-form" method="POST">
+                <form id="quiz-form">
                   <div class="form-group">
                     <label for="quizquestion">ADD Course Module</label>
-                    <input type="text" class="form-control" id="courseModules" name="courseModules" placeholder="Add Question">
+                    <input type="text" class="form-control" id="courseModules" name="courseModules" placeholder="Add Question" required>
                   </div>
                   <div class="form-group">
                     <label for="quizquestion">Add Question</label>
-                    <input type="text" class="form-control" id="quizquestion" name="quizquestion" aria-describedby="emailHelp" placeholder="Add Question">
+                    <input type="text" class="form-control" id="quizquestion" name="quizquestion" aria-describedby="emailHelp" placeholder="Add Question" required>
                   </div>
                   <div class="form-group">
                     <label for="quizoption1">Option 1</label>
-                    <input type="text" class="form-control" id="quizoption1" name="quizoption1" placeholder="Option 1">
+                    <input type="text" class="form-control" id="quizoption1" name="quizoption1" placeholder="Option 1" required>
                   </div>
                   <div class="form-group">
                     <label for="quizoption2">Option 2</label>
-                    <input type="text" class="form-control" id="quizoption2" name="quizoption2" placeholder="Option 2">
+                    <input type="text" class="form-control" id="quizoption2" name="quizoption2" placeholder="Option 2" required>
                   </div>
                   <div class="form-group">
                     <label for="quizoption3">Option 3</label>
-                    <input type="text" class="form-control" id="quizoption3" name="quizoption3" placeholder="Option 3">
+                    <input type="text" class="form-control" id="quizoption3" name="quizoption3" placeholder="Option 3" required>
                   </div>
                   <div class="form-group">
                     <label for="quizoption4">Option 4</label>
-                    <input type="text" class="form-control" id="quizoption4" name="quizoption4" placeholder="Option 4">
+                    <input type="text" class="form-control" id="quizoption4" name="quizoption4" placeholder="Option 4" required>
                   </div>
                   <div class="col-2">
                   <div class="form-group">
@@ -147,14 +149,14 @@
                     </select>
                   </div>
                 </div>
-                <button type="submit" class="btn btn-primary">Submit</button>
+                <button id="submits" class="btn btn-primary">Submit</button>
               </form>
             </div>
+            <div><button id="next" class="btn btn-primary">next</button></div>
 
             <div class="col-md-12" id="adding">
 
             </div>
-            <div><button class="btn btn-secondary" onclick="gen()">click</button></div>
           </div>  
           
         </div>
@@ -165,89 +167,6 @@
         <!-- container-scroller -->
         <!-- plugins:js -->
             
-            <script src="./js/course.js"></script>
-            
-
-            <script>
-// store=[]
-// const data = {
-//   courseModules: $('#courseModules').val(),
-//   quizquestion: $('#quizquestion').val(),
-//   quizoption1: $('#quizoption1').val(),
-//   quizoption2: $('#quizoption2').val(),
-//   quizoption3: $('#quizoption3').val(),
-//   quizoption4: $('#quizoption4').val(),
-//   correctOption: $('#correctOption').val(),
-// };
-// store.push(data)
-// console.log(store)
-// data = JSON.stringify(data);
-// $('#quiz-form').submit(function(event) {
-//   event.preventDefault();
-
-//   // Send the AJAX request to the server
-//   $.ajax({
-//     url: 'http://localhost:9999/get_quiz_questions/quiz',
-//     method: 'POST',
-//     data: data,
-//     success: function(response) {
-//       alert(response);
-//     },
-//     error: function(error) {
-//       console.error(error);
-//       alert('An error occurred while adding the quiz question');
-//     }
-//   });
-// });
-</script>
-            
-            
-
-
-
-            <script>
-              $(document).ready(function() {
-                const email = window.localStorage.getItem('Ins')
-                console.log(email)
-                $.ajax({
-                  url: "http://localhost:9999/get_courses_names/courses_names/"+email,
-                  type: "GET",
-                  contentType: 'application/json',
-                  success: function(courses) {
-                    let options = '<option selected>Select Course</option>';
-                    let options_m = '<option selected>Select Module</option>';
-                    courses.forEach((course) => {
-                      options += `<option value="${course.Course_Name}">${course.Course_Name}</option>`;
-                    });
-                    $('#select-course').html(options);
-            
-                    $('#select-course').change(function() {
-                      let selected_course = $(this).val();
-                      options_m = '<option selected>Select Module</option>';
-                      courses.forEach((course) => {
-                        if (course.Course_Name === selected_course) {
-                          course.Course_Modules.forEach((module) => {
-                            options_m += `<option value="${module}">${module}</option>`;
-                          });
-                        }
-                      });
-                      $('#selectmodule').html(options_m);
-                    });
-            
-                    $('#selectmodule').change(function() {
-                      let selected_module = $(this).val();
-                      let selected_course = $('#select-course').val();
-                      $('#selected').text(`You selected the ${selected_course} course and the ${selected_module} module.`);
-                    });
-            
-                  },
-                  error: function(error) {
-                    console.error(error);
-                  }
-                });
-              });
-            </script>
-   
-    <!-- <script src="./js/instructorA.js"></script> -->
+            <script src="./js/course.js"></script>         
   </body>
 </html>

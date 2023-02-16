@@ -1,3 +1,4 @@
+localStorage.setItem('links', JSON.stringify([]));
 
 
 function addInstructor(){

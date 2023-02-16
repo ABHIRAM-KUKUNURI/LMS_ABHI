@@ -19,8 +19,6 @@ window.onload=function(){
   }
   
 
-  // we need to add this data to a json file and for the validations part also we have to write the code in jquery avoid local storage get post
-
   function addUser(){
     if(localStorage.getItem("usd")==null){
       localStorage.setItem("usd",JSON.stringify([]))
@@ -76,30 +74,23 @@ window.onload=function(){
       "method":"POST",contentType:"application/json",'data':login,'url':'http://localhost:9999/a/login',
       "success":function(e){
         if(e){
+          // console.log(e.role)
+          localStorage.setItem('ROLL',e.role)
           localStorage.setItem("k",email)
+          console.log(localStorage.getItem('k'))
           alert("success")
-           window.location.href="index.html";
+          if(localStorage.getItem('ROLL')=='Instructor'){
+            window.location.href="Instructor_index.html";
+          }else{
+           window.location.href="index.html";}
         }else{
           alert("wrong credintials")
         }
+      },error:(e)=>{
+        alert("wrong...")
       }
     })
-    // if(window.localStorage.getItem(user)!==null){
-    //   var obj=JSON.parse(window.localStorage.getItem(user));
-    //   if(obj.password==password){
 
-    //   // this validation has to be done using jquery data to be taken from json
-    //   // alert(100);
-    //   window.localStorage.setItem("k",window.localStorage.getItem(user));
-    //   window.location.href="index.html";
-    //   }
-    //   else{
-    //     alert("wrong pasword");
-    //   }
-    // }
-    // else{
-    //   alert("Not Registered!plese signup...")
-    // }
   }
 
 

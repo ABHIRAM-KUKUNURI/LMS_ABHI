@@ -1,30 +1,30 @@
 const db = require('./conn').db
 const mongoose = require('./conn').mongoose
 
-const Courses = {
-    Course_Name:{
-        type:String,
-        required:true
-    },
-    Course_Description: {
-        type:String,
-    },
-    Course_Modules:
-     [[]],
-    Instrutor_email:{
-        type:String
-    },
-    Course_Img:{
-        type:String
-    },
-    category_name:{
-        type:String
-    },
-    
-    Students_Enrolled:{
-        type:[String]
-    }
-}
 
-let User = mongoose.model('ALL_USERS', user,'ALL_USERS')
-module.exports = {User}
+const courseSchema = new mongoose.Schema({
+  course_name: {
+    type: String,
+    required: true
+  },
+  course_description: {
+    type: String,
+    required: true
+  },
+  sections: [
+    {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: 'Section'
+    }
+
+  ],
+  Instrutor_Email:{
+    type: String
+  }
+
+});
+
+
+const Course = mongoose.model('Course_A', courseSchema,'Course_A');
+
+module.exports = {Course};
